@@ -7,7 +7,7 @@ enabled = true
 
 [project]
 name = "simple-kfp-task"
-dynamic = ["version"]
+dynamic = ["version", "dependencies"]
 authors = [
   { name="Sebastian Alberternst", email="sebastian.alberternst@dfki.de" },
 ]
@@ -19,7 +19,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dynamic = ["dependencies"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
