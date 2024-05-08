@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simple-kfp-task"
+version = "0.0.8"
+authors = [
+  { name="Sebastian Alberternst", email="sebastian.alberternst@dfki.de" },
+]
+description = "Generate a simple Kubeflow Pipeline task"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[project.scripts]
+simple-kfp-task = "simple_kfp_task.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/salberternst/simple-kfp-task"
+Issues = "https://github.com/salberternst/simple-kfp-task/issues"
