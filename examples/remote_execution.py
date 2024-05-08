@@ -15,7 +15,7 @@ if __name__ == "__main__":
         packages=[ "mlflow>=2.0", "tensorflow>=2.8", "psutil", "pynvml" ],
         namespace="sebastian-alberternst",
         remote_url="https://github.com/salberternst/simple-kfp-task.git",
-        container_image="tensorflow/tensorflow:2.8.4-gpu",
+        container_image="tensorflow/tensorflow:2.16.1-gpu",
         memory_limit="4Gi",
         gpu_limit=1
     )

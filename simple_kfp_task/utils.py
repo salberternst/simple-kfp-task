@@ -46,13 +46,3 @@ def get_relative_path(base_path: str, target_path: str) -> str:
         str: The relative path from the base path to the target path.
     """
     return os.path.relpath(target_path, base_path)
-
-
-def is_remote_execution() -> bool:
-    """
-    Returns whether the code is executed remotely.
-
-    Returns:
-        bool: True if the code is executed remotely, False otherwise.
-    """
-    return os.environ.get('INSIDE_KFP_FUNC_CONTAINER') is not None

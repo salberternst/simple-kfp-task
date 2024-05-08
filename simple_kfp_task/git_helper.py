@@ -1,9 +1,6 @@
 import os
 import sys
-from simple_kfp_task.utils import is_remote_execution
-
-if not is_remote_execution():
-    from git import Repo
+from git import Repo
 
 class GitHelper:
     """

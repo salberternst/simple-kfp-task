@@ -2,12 +2,11 @@ import os
 from simple_kfp_task.deploykf import create_kfp_client
 from typing import Callable
 from simple_kfp_task.pipeline import simple_task_pipeline
-from simple_kfp_task.utils import encode_string_to_base64, get_caller_filename, is_remote_execution
-if not is_remote_execution():
-    from simple_kfp_task.git_helper import GitHelper
+from simple_kfp_task.utils import encode_string_to_base64, get_caller_filename
+from simple_kfp_task.git_helper import GitHelper
 
 GIT_DIFF_MAX_LENGTH = 10000
-PIP_PACKAGE_NAME = "simple-kfp-task"
+PIP_PACKAGE_NAME = "simple-kfp-task-stub"
 
 
 class Task:
@@ -94,9 +93,6 @@ class Task:
         self.kfp_host = kfp_host
         self.verify_ssl = verify_ssl
 
-        if is_remote_execution():
-            return
-
         git_helper = GitHelper()
 
         if self.func:
@@ -156,12 +152,6 @@ class Task:
             kfp_client.create_run_from_pipeline_func: The KFP run created for the task.
 
         """
-        if is_remote_execution():
-            if self.func:
-                return self.func()
-            else:
-                raise ValueError("Function is required for remote execution.")
-
         kfp_client = create_kfp_client(namespace=self.namespace, host=self.kfp_host, verify_ssl=self.verify_ssl)
         return kfp_client.create_run_from_pipeline_func(
             pipeline_func=simple_task_pipeline,
