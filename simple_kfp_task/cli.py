@@ -33,6 +33,8 @@ def main():
     parser.add_argument("--disable-git-detection", action="store_true", default=False)
     parser.add_argument("--dry-run", action="store_true", default=False)
     parser.add_argument("--wait-for-run", action="store_true", default=False)
+    parser.add_argument("--kfp-host", default="https://10-101-20-33.sslip.io")
+    parser.add_argument("--verify-ssl", action="store_true", default=False)
 
     args, command_args = parser.parse_known_args()
 
@@ -55,7 +57,9 @@ def main():
         memory_limit=args.memory_limit,
         memory_request=args.memory_request,
         volume_name=args.volume_name,
-        container_image=args.container_image
+        container_image=args.container_image,
+        kfp_host=args.kfp_host,
+        verify_ssl=args.verify_ssl,
     )
 
     if not args.dry_run:

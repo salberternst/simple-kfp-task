@@ -46,6 +46,8 @@ class Task:
 
     def __init__(
         self,
+        kfp_host = "https://10-101-20-33.sslip.io",
+        verify_ssl = False,
         namespace: str = None,
         run_name: str = None,
         experiment_name: str = None,
@@ -89,6 +91,8 @@ class Task:
         self.memory_limit = memory_limit
         self.memory_request = memory_request
         self.volume_name = volume_name
+        self.kfp_host = kfp_host
+        self.verify_ssl = verify_ssl
 
         if is_remote_execution():
             return
@@ -158,7 +162,7 @@ class Task:
             else:
                 raise ValueError("Function is required for remote execution.")
 
-        kfp_client = create_kfp_client(namespace=self.namespace)
+        kfp_client = create_kfp_client(namespace=self.namespace, host=self.kfp_host, verify_ssl=self.verify_ssl)
         return kfp_client.create_run_from_pipeline_func(
             pipeline_func=simple_task_pipeline,
             experiment_name=self.experiment_name,

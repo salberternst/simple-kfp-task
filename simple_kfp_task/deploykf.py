@@ -279,10 +279,10 @@ def patched_kfp_client(verify_ssl=True):
     return _patched_client
 
 
-def create_kfp_client(host="https://10-101-20-33.sslip.io", namespace='kubeflow'):
+def create_kfp_client(host="https://10-101-20-33.sslip.io", namespace='kubeflow', verify_ssl=False):
     credentials = DeployKFCredentialsOutOfBand(
         issuer_url=f"{host}/dex",
-        skip_tls_verify=True,
+        skip_tls_verify=not verify_ssl,
     )
 
     return patched_kfp_client(verify_ssl=not credentials.skip_tls_verify)(
