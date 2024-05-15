@@ -121,7 +121,7 @@ class Task:
             raise ValueError(f"Branch {self.branch} is not available on remote")
 
         if not self.commit:
-            self.commit = git_helper.get_current_commit()
+            self.commit = git_helper.get_last_commit_on_remote()
 
         self.git_diff = None
         if not git_helper.is_commit_available_on_remote(self.commit) or git_helper.is_git_dirty():

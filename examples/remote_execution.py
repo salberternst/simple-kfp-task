@@ -12,7 +12,7 @@ def run():
 if __name__ == "__main__":
     task = Task.init(
         func=run,
-        packages=[ "mlflow>=2.0", "tensorflow>=2.8", "psutil", "pynvml" ],
+        packages=["mlflow>=2.0", "tensorflow>=2.8", "psutil", "pynvml"],
         namespace="sebastian-alberternst",
         remote_url="https://github.com/salberternst/simple-kfp-task.git",
         container_image="tensorflow/tensorflow:2.10.1-gpu",
